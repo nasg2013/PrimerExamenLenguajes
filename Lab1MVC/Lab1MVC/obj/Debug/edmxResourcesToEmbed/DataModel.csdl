@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbhotelhonaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbclient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identification" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbreservation" Relationship="Self.tbreservation_fk2" FromRole="tbclient" ToRole="tbreservation" />
+  </EntityType>
+  <EntityType Name="tbcontentpage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="referentpage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="urlimage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="typeimage" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbfacility">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbhotel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aboutus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pobox" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbphone" Relationship="Self.tbphone_fk1" FromRole="tbhotel" ToRole="tbphone" />
+  </EntityType>
+  <EntityType Name="tbphone">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idhotel" Type="Int32" Nullable="false" />
+    <Property Name="number" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbhotel" Relationship="Self.tbphone_fk1" FromRole="tbphone" ToRole="tbhotel" />
+  </EntityType>
+  <EntityType Name="tbpublicity">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbreservation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idroom" Type="Int32" Nullable="false" />
+    <Property Name="idclient" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="arrivaldate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="departuredate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbclient" Relationship="Self.tbreservation_fk2" FromRole="tbreservation" ToRole="tbclient" />
+    <NavigationProperty Name="tbroom" Relationship="Self.tbreservation_fk1" FromRole="tbreservation" ToRole="tbroom" />
+  </EntityType>
+  <EntityType Name="tbroom">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idtyperoom" Type="Int32" Nullable="false" />
+    <Property Name="estate" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="number" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <NavigationProperty Name="tbreservation" Relationship="Self.tbreservation_fk1" FromRole="tbroom" ToRole="tbreservation" />
+    <NavigationProperty Name="tbtyperoom" Relationship="Self.tbroom_fk1" FromRole="tbroom" ToRole="tbtyperoom" />
+  </EntityType>
+  <EntityType Name="tbtyperoom">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quantity" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="quantitybed" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="amount" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+    <NavigationProperty Name="tbroom" Relationship="Self.tbroom_fk1" FromRole="tbtyperoom" ToRole="tbroom" />
+  </EntityType>
+  <Association Name="tbreservation_fk2">
+    <End Role="tbclient" Type="Self.tbclient" Multiplicity="1" />
+    <End Role="tbreservation" Type="Self.tbreservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbclient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbreservation">
+        <PropertyRef Name="idclient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbphone_fk1">
+    <End Role="tbhotel" Type="Self.tbhotel" Multiplicity="1" />
+    <End Role="tbphone" Type="Self.tbphone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbhotel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbphone">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbreservation_fk1">
+    <End Role="tbroom" Type="Self.tbroom" Multiplicity="1" />
+    <End Role="tbreservation" Type="Self.tbreservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbroom">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbreservation">
+        <PropertyRef Name="idroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbroom_fk1">
+    <End Role="tbtyperoom" Type="Self.tbtyperoom" Multiplicity="1" />
+    <End Role="tbroom" Type="Self.tbroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbtyperoom">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbroom">
+        <PropertyRef Name="idtyperoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbclient" EntityType="Self.tbclient" />
+    <EntitySet Name="tbcontentpage" EntityType="Self.tbcontentpage" />
+    <EntitySet Name="tbfacility" EntityType="Self.tbfacility" />
+    <EntitySet Name="tbhotel" EntityType="Self.tbhotel" />
+    <EntitySet Name="tbphone" EntityType="Self.tbphone" />
+    <EntitySet Name="tbpublicity" EntityType="Self.tbpublicity" />
+    <EntitySet Name="tbreservation" EntityType="Self.tbreservation" />
+    <EntitySet Name="tbroom" EntityType="Self.tbroom" />
+    <EntitySet Name="tbtyperoom" EntityType="Self.tbtyperoom" />
+    <AssociationSet Name="tbreservation_fk2" Association="Self.tbreservation_fk2">
+      <End Role="tbclient" EntitySet="tbclient" />
+      <End Role="tbreservation" EntitySet="tbreservation" />
+    </AssociationSet>
+    <AssociationSet Name="tbphone_fk1" Association="Self.tbphone_fk1">
+      <End Role="tbhotel" EntitySet="tbhotel" />
+      <End Role="tbphone" EntitySet="tbphone" />
+    </AssociationSet>
+    <AssociationSet Name="tbreservation_fk1" Association="Self.tbreservation_fk1">
+      <End Role="tbroom" EntitySet="tbroom" />
+      <End Role="tbreservation" EntitySet="tbreservation" />
+    </AssociationSet>
+    <AssociationSet Name="tbroom_fk1" Association="Self.tbroom_fk1">
+      <End Role="tbtyperoom" EntitySet="tbtyperoom" />
+      <End Role="tbroom" EntitySet="tbroom" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

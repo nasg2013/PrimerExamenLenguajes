@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbhotelhonaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbclient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identification" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbcontentpage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="referentpage" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="urlimage" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="typeimage" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbfacility">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbhotel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="aboutus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pobox" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbphone">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idhotel" Type="int" Nullable="false" />
+    <Property Name="number" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbpublicity">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbreservation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idroom" Type="int" Nullable="false" />
+    <Property Name="idclient" Type="int" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+    <Property Name="arrivaldate" Type="datetime" Nullable="false" />
+    <Property Name="departuredate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbroom">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idtyperoom" Type="int" Nullable="false" />
+    <Property Name="estate" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="number" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbtyperoom">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="quantity" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="quantitybed" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="tbphone_fk1">
+    <End Role="tbhotel" Type="Self.tbhotel" Multiplicity="1" />
+    <End Role="tbphone" Type="Self.tbphone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbhotel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbphone">
+        <PropertyRef Name="idhotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbreservation_fk1">
+    <End Role="tbroom" Type="Self.tbroom" Multiplicity="1" />
+    <End Role="tbreservation" Type="Self.tbreservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbroom">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbreservation">
+        <PropertyRef Name="idroom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbreservation_fk2">
+    <End Role="tbclient" Type="Self.tbclient" Multiplicity="1" />
+    <End Role="tbreservation" Type="Self.tbreservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbclient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbreservation">
+        <PropertyRef Name="idclient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbroom_fk1">
+    <End Role="tbtyperoom" Type="Self.tbtyperoom" Multiplicity="1" />
+    <End Role="tbroom" Type="Self.tbroom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbtyperoom">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbroom">
+        <PropertyRef Name="idtyperoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbhotelhonaModelStoreContainer">
+    <EntitySet Name="tbclient" EntityType="Self.tbclient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbcontentpage" EntityType="Self.tbcontentpage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbfacility" EntityType="Self.tbfacility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbhotel" EntityType="Self.tbhotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbphone" EntityType="Self.tbphone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbpublicity" EntityType="Self.tbpublicity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbreservation" EntityType="Self.tbreservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbroom" EntityType="Self.tbroom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbtyperoom" EntityType="Self.tbtyperoom" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="tbphone_fk1" Association="Self.tbphone_fk1">
+      <End Role="tbhotel" EntitySet="tbhotel" />
+      <End Role="tbphone" EntitySet="tbphone" />
+    </AssociationSet>
+    <AssociationSet Name="tbreservation_fk1" Association="Self.tbreservation_fk1">
+      <End Role="tbroom" EntitySet="tbroom" />
+      <End Role="tbreservation" EntitySet="tbreservation" />
+    </AssociationSet>
+    <AssociationSet Name="tbreservation_fk2" Association="Self.tbreservation_fk2">
+      <End Role="tbclient" EntitySet="tbclient" />
+      <End Role="tbreservation" EntitySet="tbreservation" />
+    </AssociationSet>
+    <AssociationSet Name="tbroom_fk1" Association="Self.tbroom_fk1">
+      <End Role="tbtyperoom" EntitySet="tbtyperoom" />
+      <End Role="tbroom" EntitySet="tbroom" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

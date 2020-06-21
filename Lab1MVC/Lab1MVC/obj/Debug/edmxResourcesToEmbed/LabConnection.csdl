@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IF4101_A95777_2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IF4101_A95777_2020Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="DeleteStudent">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertUpdateStudent">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Age" Mode="In" Type="Int32" />
+      <Parameter Name="Nationality" Mode="In" Type="Int32" />
+      <Parameter Name="Major" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectMajor" ReturnType="Collection(IF4101_A95777_2020Model.SelectMajor_Result)" />
+    <FunctionImport Name="SelectNationality" ReturnType="Collection(IF4101_A95777_2020Model.SelectNationality_Result)" />
+    <FunctionImport Name="SpDeleteStudent">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SpInsertUpdateStudent">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Age" Mode="In" Type="Int32" />
+      <Parameter Name="Nationality" Mode="In" Type="Int32" />
+      <Parameter Name="Major" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Major" EntityType="IF4101_A95777_2020Model.Major" />
+    <EntitySet Name="Nationality" EntityType="IF4101_A95777_2020Model.Nationality" />
+    <EntitySet Name="Student" EntityType="IF4101_A95777_2020Model.Student" />
+    <AssociationSet Name="Major_fk" Association="IF4101_A95777_2020Model.Major_fk">
+      <End Role="Major" EntitySet="Major" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="Nationality_fk" Association="IF4101_A95777_2020Model.Nationality_fk">
+      <End Role="Nationality" EntitySet="Nationality" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <FunctionImport Name="SelectStudent" ReturnType="Collection(IF4101_A95777_2020Model.SelectStudent_Result)" />
+    <FunctionImport Name="SelectStudentById" ReturnType="Collection(IF4101_A95777_2020Model.SelectStudentById_Result)">
+      <Parameter Name="StudentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelectStudentByName" ReturnType="Collection(IF4101_A95777_2020Model.SelectStudentByName_Result)">
+      <Parameter Name="StudentName" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SelectMajor_Result">
+    <Property Type="Int32" Name="MajorId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SelectNationality_Result">
+    <Property Type="Int32" Name="NationalityId" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="MajorId" />
+    </Key>
+    <Property Name="MajorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Student" Relationship="IF4101_A95777_2020Model.Major_fk" FromRole="Major" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Nationality">
+    <Key>
+      <PropertyRef Name="NationalityId" />
+    </Key>
+    <Property Name="NationalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Student" Relationship="IF4101_A95777_2020Model.Nationality_fk" FromRole="Nationality" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Nationality" Type="Int32" />
+    <Property Name="Major" Type="Int32" />
+    <Property Name="Seniority" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Interests" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Major1" Relationship="IF4101_A95777_2020Model.Major_fk" FromRole="Student" ToRole="Major" />
+    <NavigationProperty Name="Nationality1" Relationship="IF4101_A95777_2020Model.Nationality_fk" FromRole="Student" ToRole="Nationality" />
+  </EntityType>
+  <Association Name="Major_fk">
+    <End Type="IF4101_A95777_2020Model.Major" Role="Major" Multiplicity="0..1" />
+    <End Type="IF4101_A95777_2020Model.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="MajorId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Major" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Nationality_fk">
+    <End Type="IF4101_A95777_2020Model.Nationality" Role="Nationality" Multiplicity="0..1" />
+    <End Type="IF4101_A95777_2020Model.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nationality">
+        <PropertyRef Name="NationalityId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Nationality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SelectStudent_Result">
+    <Property Type="Int32" Name="StudentId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="NationalityName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MajorName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="NationalityId" Nullable="false" />
+    <Property Type="Int32" Name="MajorId" Nullable="false" />
+    <Property Type="String" Name="Seniority" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EntryDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectStudentById_Result">
+    <Property Type="Int32" Name="StudentId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="NationalityName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MajorName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="NationalityId" Nullable="false" />
+    <Property Type="Int32" Name="MajorId" Nullable="false" />
+    <Property Type="String" Name="Seniority" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EntryDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectStudentByName_Result">
+    <Property Type="Int32" Name="StudentId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="NationalityName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MajorName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="NationalityId" Nullable="false" />
+    <Property Type="Int32" Name="MajorId" Nullable="false" />
+    <Property Type="String" Name="Seniority" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EntryDate" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Interests" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>

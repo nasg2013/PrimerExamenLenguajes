@@ -1,0 +1,72 @@
+﻿@model Lab1MVC.Models.StudentRazorDTO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seniority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seniority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryDate)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NationalityName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NationalityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbhotelhonaModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="tbclient">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbclient">
+        <MappingFragment StoreEntitySet="tbclient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identification" ColumnName="identification" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbcontentpage">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbcontentpage">
+        <MappingFragment StoreEntitySet="tbcontentpage">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="referentpage" ColumnName="referentpage" />
+          <ScalarProperty Name="urlimage" ColumnName="urlimage" />
+          <ScalarProperty Name="typeimage" ColumnName="typeimage" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbfacility">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbfacility">
+        <MappingFragment StoreEntitySet="tbfacility">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbhotel">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbhotel">
+        <MappingFragment StoreEntitySet="tbhotel">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="aboutus" ColumnName="aboutus" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="pobox" ColumnName="pobox" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbphone">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbphone">
+        <MappingFragment StoreEntitySet="tbphone">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbpublicity">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbpublicity">
+        <MappingFragment StoreEntitySet="tbpublicity">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbreservation">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbreservation">
+        <MappingFragment StoreEntitySet="tbreservation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idroom" ColumnName="idroom" />
+          <ScalarProperty Name="idclient" ColumnName="idclient" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="arrivaldate" ColumnName="arrivaldate" />
+          <ScalarProperty Name="departuredate" ColumnName="departuredate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbroom">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbroom">
+        <MappingFragment StoreEntitySet="tbroom">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idtyperoom" ColumnName="idtyperoom" />
+          <ScalarProperty Name="estate" ColumnName="estate" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbtyperoom">
+      <EntityTypeMapping TypeName="dbhotelhonaModel.tbtyperoom">
+        <MappingFragment StoreEntitySet="tbtyperoom">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="quantitybed" ColumnName="quantitybed" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

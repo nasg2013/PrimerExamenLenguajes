@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Néstor\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Néstor\\.nuget\\packages"
+    ]
+  }
+}

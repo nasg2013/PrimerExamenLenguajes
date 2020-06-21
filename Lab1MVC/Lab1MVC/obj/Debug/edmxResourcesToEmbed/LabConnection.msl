@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IF4101_A95777_2020ModelStoreContainer" CdmEntityContainer="IF4101_A95777_2020Entities">
+    <FunctionImportMapping FunctionImportName="DeleteStudent" FunctionName="IF4101_A95777_2020Model.Store.DeleteStudent" />
+    <FunctionImportMapping FunctionImportName="InsertUpdateStudent" FunctionName="IF4101_A95777_2020Model.Store.InsertUpdateStudent" />
+    <FunctionImportMapping FunctionImportName="SelectMajor" FunctionName="IF4101_A95777_2020Model.Store.SelectMajor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101_A95777_2020Model.SelectMajor_Result">
+          <ScalarProperty Name="MajorId" ColumnName="MajorId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectNationality" FunctionName="IF4101_A95777_2020Model.Store.SelectNationality">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101_A95777_2020Model.SelectNationality_Result">
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SpDeleteStudent" FunctionName="IF4101_A95777_2020Model.Store.DeleteStudent" />
+    <FunctionImportMapping FunctionImportName="SpInsertUpdateStudent" FunctionName="IF4101_A95777_2020Model.Store.InsertUpdateStudent" />
+    <EntitySetMapping Name="Major">
+      <EntityTypeMapping TypeName="IF4101_A95777_2020Model.Major">
+        <MappingFragment StoreEntitySet="Major">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MajorId" ColumnName="MajorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nationality">
+      <EntityTypeMapping TypeName="IF4101_A95777_2020Model.Nationality">
+        <MappingFragment StoreEntitySet="Nationality">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="IF4101_A95777_2020Model.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+          <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+          <ScalarProperty Name="Major" ColumnName="Major" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SelectStudent" FunctionName="IF4101_A95777_2020Model.Store.SelectStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101_A95777_2020Model.SelectStudent_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="NationalityName" ColumnName="NationalityName" />
+          <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="MajorId" ColumnName="MajorId" />
+          <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStudentById" FunctionName="IF4101_A95777_2020Model.Store.SelectStudentById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101_A95777_2020Model.SelectStudentById_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="NationalityName" ColumnName="NationalityName" />
+          <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="MajorId" ColumnName="MajorId" />
+          <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStudentByName" FunctionName="IF4101_A95777_2020Model.Store.SelectStudentByName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IF4101_A95777_2020Model.SelectStudentByName_Result">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="NationalityName" ColumnName="NationalityName" />
+          <ScalarProperty Name="MajorName" ColumnName="MajorName" />
+          <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+          <ScalarProperty Name="MajorId" ColumnName="MajorId" />
+          <ScalarProperty Name="Seniority" ColumnName="Seniority" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

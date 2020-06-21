@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Lab1MVC.Models.StudentRazorDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h1>View LinQ-Razor</h1>
+    <div class="container">
+        <br /><br /><br /><br />
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-sm-12">
+                <!-- Search Api -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>
+                            @Html.ActionLink("Add New Student", "Create", null, new { @class = "btn btn-primary" })
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <br />
+                        <form  method="post" class="form-inline my-2 my-lg-0" autocomplete="off"  >
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search by name" aria-label="Search" id="name" name="name">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnSearchStudentApi">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <br />
+                <table class="table table-striped" id="TableRazor">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StudentId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Seniority)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EntryDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Interests)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NationalityName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MajorName)
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StudentId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Seniority)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EntryDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Interests)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NationalityName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MajorName)
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+            
